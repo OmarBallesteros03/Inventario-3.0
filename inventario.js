@@ -1,25 +1,23 @@
 class Inventario{
     constructor(){
-        this.inventario = new Array();
+        this.primero = null;
     }
 
     agregarProducto(producto){
-        if(this.inventario.length==0){
-            this.inventario[this.inventario.length] = producto;
+        if(this.primero ==null){
+            this.primero = producto;
         } else {
-                while (this.inventario[i]!=null && producto.getCode < this.inventario[i-1].getCode){
-                    producto = this.inventario[this.inventario.length-1];
-                    for(i=this.inventario.length-1; i >=1; i--){
-                    this.inventario[i]=this.inventario[i-1];
-                }
-                    this.inventario[0] = x;
-                }
+            let temp = this.primero;
+            while (temp.next != null){
+                temp = temp.next;
             }
+            temp.next = producto;
+        }
         }
 
     eliminarProducto(code){
         for(let i = 0; i < this.inventario.length;i++){
-            if(code === this.inventario[i].getCode)
+            if(code === this.inventario[i].code)
             {
                 for(let j = i; j < this.inventario.length; j++)
                 {
@@ -82,23 +80,7 @@ class Producto{
     }
 
     info(){
-        return `${i+1}.- Código: ${getCode()} | Nombre: ${getName()} | Cantidad: ${getAmount()} | Costo: ${getCost()}`
-    }
-
-    getCode(){
-        return this.code;
-    }
-
-    getName(){
-        return this.name;
-    }
-
-    getAmount(){
-        return this.amount;
-    }
-
-    getCost(){
-        return this.cost
+        return `Código: ${this.code} | Nombre: ${this.name} | Cantidad: ${this.amount} | Costo: ${this.cost}`
     }
 
 }
