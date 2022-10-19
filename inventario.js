@@ -16,16 +16,10 @@ class Inventario{
         }
 
     eliminarProducto(code){
-        for(let i = 0; i < this.inventario.length;i++){
-            if(code === this.inventario[i].code)
-            {
-                for(let j = i; j < this.inventario.length; j++)
-                {
-                    producto[j] = producto[j+1];
+            if(this.primero != null){
+                if(this.primero.code === code){
+                    this.primero = this.primero.next;
                 }
-            this.inventario.pop(); 
-            } else{
-                return null;
             }
         }
         
@@ -76,6 +70,7 @@ class Producto{
         this.name = name;
         this.amount = amount;
         this.cost = cost;
+        this.next = null;
 
     }
 
